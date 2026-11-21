@@ -1,0 +1,40 @@
+import random
+import tkinter as tk
+
+win = tk.Tk()
+win.title("Спіймай мене")
+win.geometry("450x450")
+win.config(bg="#199c79")
+
+score = 0
+
+label = tk.Label(
+    win, text="Бали: 0", font=("Arial", 16, "bold"), bg="#199c79", fg="white"
+)
+label.pack(pady=10)
+
+
+def move_btn():
+  x = random.randint(20, 350)
+  y = random.randint(60, 380)
+  btn.place(x=x, y=y)
+
+
+def hit():
+  global score
+  score += 1
+  label.config(text=f"Бали: {score}")
+  move_btn()
+
+
+def run_away(e):
+  move_btn()
+
+
+btn = tk.Button(
+    win, text="Спіймай!", font=("Arial", 14, "bold"), bg="yellow", command=hit
+)
+btn.place(x=170, y=200)
+btn.bind("<Enter>", run_away)
+
+win.mainloop()
